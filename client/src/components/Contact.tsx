@@ -3,7 +3,7 @@ import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Contact = () => {
     return (
-        <section className="section contact-section">
+        <section id="contact" className="section contact-section">
             <div className="container">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}

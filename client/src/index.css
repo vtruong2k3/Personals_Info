@@ -376,6 +376,77 @@ p {
   50% { transform: translateY(-15px); }
 }
 
+/* Hero Avatar Styles */
+.hero-avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-avatar-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: var(--radius-full);
+}
+
+.hero-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  border: 4px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-card), var(--shadow-glow-mixed);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 2;
+  animation: avatar-breathe 3s ease-in-out infinite;
+}
+
+.hero-avatar-wrapper .avatar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  opacity: 0.7;
+  z-index: 1;
+  animation: rotate-glow 4s linear infinite;
+  filter: blur(8px);
+}
+
+.hero-avatar-wrapper:hover .hero-avatar-image {
+  transform: scale(1.08);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 60px rgba(59, 130, 246, 0.5), 
+              0 0 90px rgba(124, 58, 237, 0.3),
+              var(--shadow-card);
+}
+
+.hero-avatar-wrapper:hover .avatar-glow {
+  opacity: 1;
+  filter: blur(12px);
+}
+
+@keyframes avatar-breathe {
+  0%, 100% { 
+    box-shadow: var(--shadow-card), 0 0 30px rgba(59, 130, 246, 0.3);
+  }
+  50% { 
+    box-shadow: var(--shadow-card), 0 0 50px rgba(124, 58, 237, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-avatar-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
 /* ==========================================
    ABOUT SECTION
    ========================================== */
@@ -452,6 +523,77 @@ p {
   color: var(--color-text-primary);
   box-shadow: var(--shadow-glow-blue);
 }
+
+/* ==========================================
+   AVATAR COMPONENT
+   ========================================== */
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / -1;
+  margin-bottom: var(--spacing-lg);
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-full);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 2;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 1;
+  animation: rotate-glow 4s linear infinite;
+}
+
+.avatar-wrapper:hover .avatar-glow {
+  opacity: 0.6;
+}
+
+.avatar-wrapper:hover .avatar-image {
+  transform: scale(1.05);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-mixed), var(--shadow-card);
+}
+
+@keyframes rotate-glow {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .avatar-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+}
+
 
 /* ==========================================
    PROJECTS SECTION

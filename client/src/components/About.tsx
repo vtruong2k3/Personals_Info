@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
     return (
-        <section className="section about-section">
+        <section id="about" className="section about-section">
             <div className="container">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -15,14 +15,14 @@ const About = () => {
                     <div className="about-content">
                         <div>
                             <p className="about-text" style={{ marginBottom: '1.5rem' }}>
-                                A passionate developer with expertise in creating immersive digital experiences.
-                                My journey in web development combines technical excellence with creative vision.
+                                I am a passionate Android developer focused on building modern and reliable mobile applications.
+                                My journey in mobile development emphasizes clean architecture, performance, and user experience.
                             </p>
                             <p className="about-text">
-                                I specialize in building high-performance applications that push the boundaries
-                                of what's possible in the browser, focusing on 3D graphics, animations, and
-                                cutting-edge web technologies.
+                                I specialize in developing high-quality Android apps using Kotlin and Jetpack Compose,
+                                with a strong focus on scalable architecture, smooth UI, and real-world product requirements.
                             </p>
+
                         </div>
 
                         <div className="glass-card skills-card">

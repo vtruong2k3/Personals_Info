@@ -6,26 +6,42 @@ const Hero = () => {
     const [displayedSubtitle, setDisplayedSubtitle] = useState('');
     const [displayedTitle, setDisplayedTitle] = useState('');
     const [showTitle, setShowTitle] = useState(false);
+    const [showAvatar, setShowAvatar] = useState(false);
 
-    const subtitle = "Creative Developer";
-    const title = "VINH TRUONG";
+    const subtitle = "Android Developer";
+    const title = "Vũ Văn Trường";
 
-    // Typewriter effect for subtitle first
+
+    // Show avatar after intro
     useEffect(() => {
-        let currentIndex = 0;
-        const interval = setInterval(() => {
-            if (currentIndex <= subtitle.length) {
-                setDisplayedSubtitle(subtitle.slice(0, currentIndex));
-                currentIndex++;
-            } else {
-                clearInterval(interval);
-                // Delay before showing title typewriter
-                setTimeout(() => setShowTitle(true), 500);
-            }
-        }, 80);
-
-        return () => clearInterval(interval);
+        const timer = setTimeout(() => {
+            setShowAvatar(true);
+        }, 1000); // Avatar shows at 1 second
+        return () => clearTimeout(timer);
     }, []);
+
+    // Typewriter effect for subtitle - starts after avatar
+    useEffect(() => {
+        if (!showAvatar) return;
+
+        const startDelay = setTimeout(() => {
+            let currentIndex = 0;
+            const interval = setInterval(() => {
+                if (currentIndex <= subtitle.length) {
+                    setDisplayedSubtitle(subtitle.slice(0, currentIndex));
+                    currentIndex++;
+                } else {
+                    clearInterval(interval);
+                    // Delay before showing title typewriter
+                    setTimeout(() => setShowTitle(true), 500);
+                }
+            }, 80);
+
+            return () => clearInterval(interval);
+        }, 500); // Start typewriter 500ms after avatar appears
+
+        return () => clearTimeout(startDelay);
+    }, [showAvatar]);
 
     // Typewriter effect for title after subtitle completes
     useEffect(() => {
@@ -52,6 +68,23 @@ const Hero = () => {
                 transition={{ duration: 1, delay: 0.5 }}
                 style={{ position: 'relative', zIndex: 10 }}
             >
+                {/* Avatar */}
+                <motion.div
+                    className="hero-avatar-container"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                    <div className="hero-avatar-wrapper">
+                        <div className="avatar-glow"></div>
+                        <img
+                            src="/avatar.png"
+                            alt="Profile Avatar"
+                            className="hero-avatar-image"
+                        />
+                    </div>
+                </motion.div>
+
                 <motion.h2
                     className="hero-subtitle"
                     initial={{ opacity: 0 }}
@@ -80,8 +113,8 @@ const Hero = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2.5, duration: 0.8 }}
                 >
-                    Crafting premium digital experiences with cutting-edge technologies.
-                    Specialized in React, Three.js, and immersive web applications.
+                    Crafting high-quality Android applications with modern technologies.
+                    Specialized in Kotlin, Jetpack Compose, and scalable mobile solutions.
                 </motion.p>
             </motion.div>
 
